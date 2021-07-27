@@ -23,7 +23,12 @@ public abstract class AbstractRepository<T> {
     public void save(T e) {
         em.getTransaction().begin();
         em.persist(e);
-        //em.merge(e);
+        em.getTransaction().commit();
+    }
+
+    public void update(T e) {
+        em.getTransaction().begin();
+        em.merge(e);
         em.getTransaction().commit();
     }
 
